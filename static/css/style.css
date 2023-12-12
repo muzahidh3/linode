@@ -1,0 +1,21 @@
+.error_msg{ 
+    background-color: #de4545;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.success_msg{ 
+  background-color: #28a745;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.msg-bg p{ 
+  color:#fff;
+  margin: 0;
+}
+
+
+#model, #sr_no, #printer_name, #internet, #printer_problem, #internet_issue, #internet_issue_des {
+    display: none;
+}

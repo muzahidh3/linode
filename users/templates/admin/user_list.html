@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block d-title %}
+    Division List
+{% endblock d-title %} 
+
+{% block d-content %} 
+
+<div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-12"> 
+          <h1 class="m-0 text-dark float-left w-75">User's List</h1>
+        </div> 
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div> 
+<section class="invest_request_area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                {% for message in messages %}
+                    <p class="float-left mb-1" style="color: red;">{{message}}</p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered table-striped text-center">
+                    <thead class="table-dark">
+                        <th>SL</th>
+                        <th>Name</th> 
+                        <th>Username</th> 
+                        <th>Status</th> 
+                        <th>Action</th>
+                    </thead>
+                    <tbody class="text-center">
+                        
+                        {% for user_list in user_list %}
+                            <tr>
+                                <td class="align-middle">{{forloop.counter}}</td>
+                                <td class="align-middle">{{user_list.first_name}} {{ user_list.last_name}}</td>
+                                <td class="align-middle">{{user_list.username}}</td>
+                                <td class="align-middle"> 
+                                    {% if user_list.is_active %}
+                                        <span>Active</span>
+                                    {% else %}
+                                        <span style="color: red;">Inactive</span>
+                                    {% endif %} 
+                                </td>
+                                <td class="align-middle text-center">
+                                                                      
+                                    {% if not user_list.is_active %}
+                                        <a href="{% url 'users:user-active' user_list.id %}" class="btn btn-warning btn-sm d-inline-block mr-1">Active</a>
+                                        {% else %}
+                                        <a href="{% url 'users:user-deactive' user_list.id %}" class="btn btn-success btn-sm d-inline-block mr-1">Deactive</a>
+                                    {% endif %} 
+                                    
+                                </td> 
+                                 
+                            </tr>
+                        {% endfor %} 
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section> 
+{% endblock d-content %} 
+{% block d-script %}
+    <script> 
+    </script>
+
+{% endblock d-script %}

@@ -1,0 +1,359 @@
+{% load static %}
+{% load extra_tags %}
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+
+ <a href="#" class="brand-link d-block overflow-hidden">
+    <div class="logo_images">    
+  
+      {% comment %} <img src="{{request.user.profiles.profile_pic.url}}" class="brand-image">  {% endcomment %}
+      {% if request.user.is_authenticated %}
+      <img class="profile-pic" src="{{request.user.profile.user_pic.url}}" /> 
+      
+
+      {%endif%}
+      
+
+
+
+    </div>
+  </a> 
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      
+     
+      
+   
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"> 
+    
+    
+    
+      {% if request.user.is_ccn_hod or request.user.is_superuser %}
+
+     
+      <li class="nav-item has-treeview menu-open">
+        <a href="#" class="nav-link active">
+          <i class="nav-icon fas fa-tachometer-alt"></i> <p> Dashboard </p>
+        </a> 
+      </li> 
+
+     
+
+      <li class="nav-item has-treeview">
+        <a href="#" class="nav-link">
+          <i class="fas fa-user"></i> <p>My Account<i class="right fas fa-angle-left"></i></p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{% url 'users:account' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i> <p>Update Profile</p> </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="far fa-circle nav-icon"></i> <p>Change Password</p> </a>
+          </li>
+          
+        </ul>
+      </li>  
+
+      <li class="nav-item">
+        <a href="{% url 'users:users-list' %}" class="nav-link">
+          <i class="nav-icon far fa-user"></i>
+          User List
+        </a> 
+      </li>  
+
+      <li class="nav-item has-treeview">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fas fa-chart-pie"></i>
+          <p> Division <i class="right fas fa-angle-left"></i> </p>
+        </a>
+        <ul class="nav nav-treeview">
+
+        
+
+          <li class="nav-item">
+            <a href="{% url 'users:add_division' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i> <p>Add Division</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'users:division_list' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i> <p>Division List</p>
+            </a>
+          </li>
+
+        </ul>
+      </li>
+
+
+
+      <li class="nav-item has-treeview">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fas fa-chart-pie"></i>
+          <p> Problems Type <i class="right fas fa-angle-left"></i> </p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{% url 'users:add-jobcard-problem' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i> <p>Add</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'users:jobcard-problem-list' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i> <p>List</p>
+            </a>
+          </li>
+
+        </ul>
+      </li>
+
+
+
+      <li class="nav-item has-treeview">
+        <a href="#" class="nav-link">
+          <i class="fas fa-money-check-alt"></i>
+          <p>CCN Job Card <i class="fas fa-angle-left right"></i></p>
+        </a>
+        <ul class="nav nav-treeview">
+
+          <li class="nav-item">
+            <a href="{% url 'users:jobcard_pending_ccn_head' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i> <p>Pending JobCard's <span class="badge badge-danger right">{{ TotalPendingJob|TotalPendingJob }}</span> </p>
+            </a>
+          
+
+          </li>
+
+          <li class="nav-item">
+            <a href="{% url 'users:jobcard_list' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i> <p>All JobCard's <span class="badge badge-danger right">{{ TotalJob|TotalJob }}</span>  </p>
+            </a>
+          </li>
+
+        </ul>
+      </li> 
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="nav-icon far fa-envelope"></i>
+          hhihi
+        </a> 
+      </li>  
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="fas fa-bell"></i> <p> Notification 
+          
+          <span class="badge badge-danger right">ggtggt</span> 
+         
+        </p>
+        </a> 
+      </li> 
+
+
+      <li class="nav-item">
+        <a href="/logout" class="nav-link">
+          <i class="fas fa-bell"></i> Logout </a> 
+      </li> 
+    
+
+{% elif request.user.is_hod %}
+
+
+
+      <li class="nav-item has-treeview">
+        <a href="#" class="nav-link">
+          <i class="fas fa-user"></i> <p>My Account<i class="right fas fa-angle-left"></i></p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{% url 'users:account' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i> <p>Update Profile</p> </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="far fa-circle nav-icon"></i> <p>Change Password</p> </a>
+          </li>
+          
+        </ul>
+      </li>  
+
+
+      <li class="nav-item has-treeview">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fas fa-chart-pie"></i>
+          <p> Job Card<i class="right fas fa-angle-left"></i> </p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{% url 'users:job-card-on-user-head' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i> <p>Pending JobCard's</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'users:job_card_approved' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i> <p>View all JobCard's</p>
+            </a>
+          </li>
+
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a href="/logout" class="nav-link">
+          <i class="fas fa-bell"></i> Logout </a> 
+      </li> 
+
+
+{% elif request.user.is_user %}
+
+
+
+
+      <li class="nav-item has-treeview">
+        <a href="#" class="nav-link">
+          <i class="fas fa-user"></i> <p>My Account<i class="right fas fa-angle-left"></i></p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{% url 'users:account' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i> <p>Update Profile</p> </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="far fa-circle nav-icon"></i> <p>Change Password</p> </a>
+          </li>
+          
+        </ul>
+      </li>  
+
+<li class="nav-item">
+ <a href="{% url 'users:add_jobcard' %}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i> <p>Add CCN Job Card</p>
+            </a> </li>
+
+<li class="nav-item">
+ <a href="{% url 'users:user_submitted_jobcard' %}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i> <p> JobCard's of {{ request.user.first_name}}</p>
+            </a> </li>
+
+
+
+
+      <li class="nav-item">
+        <a href="/logout" class="nav-link">
+          <i class="fas fa-bell"></i> Logout </a> 
+      </li> 
+
+
+
+
+{% elif request.user.is_engineer %}
+
+
+
+      <li class="nav-item has-treeview">
+        <a href="#" class="nav-link">
+          <i class="fas fa-user"></i> <p>My Account<i class="right fas fa-angle-left"></i></p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{% url 'users:account' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i> <p>Update Profile</p> </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="far fa-circle nav-icon"></i> <p>Change Password</p> </a>
+          </li>
+          
+        </ul>
+      </li>  
+
+
+      <li class="nav-item has-treeview menu-open">
+        <a href="#" class="nav-link">
+          <i class="fas fa-money-check-alt"></i>
+          <p>CCN Job Card <i class="fas fa-angle-left right"></i></p>
+        </a>
+        <ul class="nav nav-treeview">
+
+          <li class="nav-item">
+            <a href="{% url 'users:jobcard_pending_on_engineer' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i> <p>Pending JobCard's</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{% url 'users:all-jobcards-of-engineer' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i> <p>All JobCard's</p>
+            </a>
+          </li>
+
+        </ul>
+      </li> 
+
+
+
+      <li class="nav-item">
+        <a href="/logout" class="nav-link">
+          <i class="fas fa-bell"></i> Logout </a> 
+      </li> 
+
+
+
+
+
+{% else %}
+
+
+
+
+
+
+
+
+
+<li class="nav-item">
+        <a href="{% url 'users:login' %}" class="nav-link">
+          <i class="fas fa-bell"></i> Login
+        </a> 
+</li> 
+
+
+<li class="nav-item">
+        <a href="{% url 'users:register' %}" class="nav-link">
+          <i class="fas fa-bell"></i> Register
+        </a> 
+</li> 
+
+<li class="nav-item">
+        <a href="{% url 'users:feedback' %}" class="nav-link">
+          <i class="fas fa-bell"></i> Feedback
+        </a> 
+</li> 
+
+
+{% endif %}
+
+
+
+
+
+
+
+
+
+    </ul>
+
+    
+      
+        
+
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>

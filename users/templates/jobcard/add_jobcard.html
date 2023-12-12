@@ -1,0 +1,199 @@
+{% extends 'base.html' %}
+
+{% block d-title %}
+    Add CCN JobCard
+{% endblock d-title %} 
+
+{% block d-content %} 
+
+<div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-12"> 
+            <h1 class="m-0 text-dark float-left w-75">Request for CCN Service</h1> 
+             </div> 
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+
+<section class="invest_request_area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-10">
+  <div class="card card-body">
+
+
+
+   {% if messages %}
+            <div class="msg-bg">
+            {% for message in messages %}
+            
+          {% if message.tags == "error" %}
+                <div class="error_msg">
+                    <p style="color: red;"><i class="fas fa-exclamation-triangle"></i> {{message}}</p>
+                </div>
+          {% else %}
+                <div class="success_msg">
+                    <p><i class="fas fa-check-circle"></i> {{message}}</p>
+                </div>
+             {% endif %} 
+                      
+            {% endfor %}
+                 </div>
+        {% endif %} 
+
+
+
+
+               
+                <form action="" method="POST" id="indexForm" data-courses-url="{% url 'users:ajax_load_printers' %}">
+                    {% csrf_token %}
+                  
+
+
+                        <div class="form-group row">
+                            <label for="inputName" class="col-sm-3 col-form-label">Category</label>
+                            <div class="col-sm-9">
+                <select name="problemcategory" class="form-control" id="problemcategory" onchange="DisplayNameOfPrinter()" required>
+               <option value="">Select Problem Category</option>
+              {% for problem_category in problem_category %}
+                <option value="{{problem_category.id}}">{{problem_category}}</option>
+              {% endfor %}
+                
+            </select>   
+                            </div>
+                        </div>
+
+
+ <div class="form-group row" id="printer_name">
+                            <label for="inputName" class="col-sm-3 col-form-label">Printer Make</label>
+                            <div class="col-sm-9">
+                             
+                             <select name="printer_make" id="printer_make" class="form-control">
+
+        </select>
+        
+              </div>
+                        </div>
+
+
+
+           <div class="form-group row" id="model">
+                            <label for="inputName" class="col-sm-3 col-form-label">Printer Model No</label>
+                            <div class="col-sm-9">
+                                <input type="text" placeholder="Model No" id="model_no" name="model_no" class="form-control">
+                            </div>
+                        </div>
+                                 
+
+
+
+   <div class="form-group row" id="printer_problem">
+                            <label for="inputName" class="col-sm-3 col-form-label">Describe your Printer Problem</label>
+                            <div class="col-sm-9">
+                                <textarea name="problem" class="form-control"> </textarea>
+                            </div>
+                        </div>
+<!-- Printer Problem ENDS-->
+
+
+<!-- Internet Problem starts-->
+                        <div class="form-group row" id="internet_issue">
+                            <label for="inputName" class="col-sm-3 col-form-label">Internet Issue</label>
+                            <div class="col-sm-9">
+                                <select name="issue_in" class="form-control" id="issue_in">
+                                    <option value="">Select</option>
+                                    <option value="LAN">LAN</option>
+                                    <option value="Wi-Fi">Wi-Fi</option>                
+                                </select> 
+                            </div>
+                        </div>
+
+
+                       <div class="form-group row" id="internet_issue_des">
+                            <label for="inputName" class="col-sm-3 col-form-label">Describe your Internet Problem</label>
+                            <div class="col-sm-9">
+                                <textarea name="problem" class="form-control"> </textarea>
+                            </div>
+                        </div>
+<!-- Internet Problem End-->
+
+                                                
+
+                        <div class="form-group row"> 
+                            <div class="col-sm-9 offset-sm-3">
+                                <input class="btn btn-success" type="submit" value="Add">
+                            </div>
+                        </div> 
+                   
+                </form>
+				 </div>
+            </div>
+        </div>
+    </div>
+</section>  
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $("#problemcategory").change(function () {
+      var url = $("#indexForm").attr("data-courses-url");  // get the url of the `load_courses` view
+      var programmingId = $(this).val();  // get the selected programming ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/load-courses/)
+        data: {
+          'programming': programmingId       // add the programming id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_courses` view function
+          $("#printer_make").html(data);  // replace the contents of the course input with the data that came from the server
+        }
+      });
+
+    });
+  </script> 
+
+
+
+<script>
+    function DisplayNameOfPrinter()
+    {
+                var cat = document.getElementById('problemcategory');
+                var printer_name = document.getElementById('printer_name');
+                var model = document.getElementById('model');
+                var internet_issue = document.getElementById('internet_issue');
+                var internet_issue_des = document.getElementById('internet_issue_des');
+                var printer_problem = document.getElementById('printer_problem');
+
+               if(cat.value == "3")
+                {
+                    printer_name.style.display="flex";
+                    model.style.display="flex"; 
+                    printer_problem.style.display="flex";
+                    internet_issue.style.display="none";
+                    internet_issue_des.style.display="none";
+                }
+
+                else if(cat.value == "2")
+                {
+                    internet_issue.style.display="flex";
+                    internet_issue_des.style.display="flex";
+                    printer_name.style.display="none";
+                    model.style.display="none";
+                    printer_problem.style.display="none";
+                }
+                else {
+
+                    printer_name.style.display="none";
+                    model.style.display="none";
+                    printer_problem.style.display="none";
+                }
+  }
+
+
+
+   
+
+
+  </script>
+
+
+{% endblock d-content %}

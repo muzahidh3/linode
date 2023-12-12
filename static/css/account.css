@@ -1,0 +1,33 @@
+
+
+
+.logo.text-center {
+	width: 110px;
+	height: 110px;
+	background: #fff;
+	border-radius: 500px; 
+	padding: 23px 0;
+	margin: 0 auto 12px;
+    border: 2px solid #999;
+}
+.logo.text-center a img {
+	width: 75px; 
+}
+.second_page{
+    display: none;
+}
+.bg-black {
+	background-color: #f5f7fa;
+	color: #fff !important;
+}
+.login-box, .register-box {
+	width: 35%;
+	background: #fff;
+	margin: 0 !important;
+}
+.login-box .card, .register-box.card {
+	background: #fff;
+	border: none;
+	box-shadow: none;
+}
+

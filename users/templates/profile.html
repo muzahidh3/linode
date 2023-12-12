@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block ac-title %}
+    User Login
+{% endblock ac-title %}
+
+{% block d-content %}
+<div class="card">
+  <div class="card-body register-card-body">
+
+    <h2>{{ user.get_full_name }}</h2>
+<ul>
+  <li>Username: {{ user.username }}</li>
+  <li>Location: {{ request.user.profile.location }}</li>
+  <li>Division Name: {{ user.division }}</li>
+</ul>
+ 
+  
+  </div>
+  <!-- /.form-box -->
+</div><!-- /.card -->
+ 
+
+{% endblock d-content %} 

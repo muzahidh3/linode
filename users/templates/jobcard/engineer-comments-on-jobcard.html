@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block d-title %}
+    All JobCard's List
+{% endblock d-title %} 
+
+{% block d-content %} 
+
+<div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-12"> 
+          <h1 class="m-0 text-dark float-left w-75">JobCard List</h1> 
+           </div> 
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>  
+<section class="invest_request_area">
+    <div class="container-fluid">
+      
+                     <div class="row">
+            <div class="col">
+                {% for message in messages %}
+                    <p class="float-left mb-1" style="color: red;">{{message}}</p>
+                {% endfor %}
+            </div>
+        </div>
+
+
+        <div class="my-row">
+        <form action="{% url 'users:engineer-comments-form' %}" method="POST">
+                    {% csrf_token %}
+         {% for engg_update in engg_update %}
+            <div class="col-12">
+ 
+                   <div class="text">User Name : {{engg_update.user_no}} ({{ engg_update.division}})</div>
+                    <div class="text">Problem Category : {{engg_update.problemcategory}}</div>
+                    <div class="text">User Name : {{engg_update.user_no}}</div>
+                    <div class="text">User Name : {{engg_update.user_no}}</div>
+
+                    <div class="text">Type of Problem : {{engg_update.type_of_problem}}</div>
+                            <div class="text">Model No : {{engg_update.model_no}}</div>
+                            <div class="text">Serial Number : {{engg_update.sr_no}}</div>
+                               <div class="text">Created on : {{engg_update.date_created}}</div>
+                               <div class="text">Forwarded to CCN : {{engg_update.forwareded_to_ccn_head_date}}</div>
+                               <div class="text">Forwarded to me: {{engg_update.ccn_head_to_engg_date}}</div>
+
+                                <div class="text">
+                                <input type="hidden" name="jobb_id" value="{{engg_update.id}}" />
+                                <textarea name="engg_comment" class="form-control" > </textarea>
+                                </div>
+
+                                <input type="submit" value="comment" />
+
+                              
+                
+           </div>
+           {% endfor %} 
+         </form>
+    
+        </div>
+    </div>
+</section> 
+
+<script>
+$(document).ready(function(){
+    $('#myTable').dataTable();
+});
+</script>
+
+{% endblock d-content %} 
+{% block d-script %}
+    <script> 
+    </script>
+
+{% endblock d-script %}

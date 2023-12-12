@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block d-title %}
+    All JobCard's List
+{% endblock d-title %} 
+
+{% block d-content %} 
+
+<div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-12"> 
+          <h1 class="m-0 text-dark float-left w-75">JobCard List</h1> 
+          <a href="{% url 'users:add_jobcard' %}" class="btn btn-success float-right text-right">Add New JobCard</a>
+        </div> 
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div> 
+<section class="invest_request_area">
+    <div class="container-fluid">
+      <div class="row">
+            <div class="col-12">
+                   {% if messages %}
+            <div class="msg-bg">
+            {% for message in messages %}
+            
+          {% if message.tags == "error" %}
+                <div class="error_msg">
+                    <p style="color: red;"><i class="fas fa-exclamation-triangle"></i> {{message}}</p>
+                </div>
+          {% else %}
+                <div class="success_msg">
+                    <p><i class="fas fa-check-circle"></i> {{message}}</p>
+                </div>
+             {% endif %} 
+                      
+            {% endfor %}
+                 </div>
+        {% endif %} 
+
+
+            <form action="" method="POST">
+{% csrf_token %}
+                <table class="table table-bordered table-striped text-center" id="myTable">
+                    <thead class="table-dark">
+                        <th>SL</th>
+                        <th>Name (Division)</th> 
+                        <th>Category</th> 
+                        <th>Problem</th>
+                        <th> Assign Engineer</th>
+                        <th>Action</th>
+                    </thead>
+                    <tbody class="text-center">
+                        
+                        {% for p_ccn_jobcard_list in p_ccn_jobcard_list %}
+                            <tr>
+                                <td class="align-middle">{{forloop.counter}}</td>
+                                <td class="align-middle">{{p_ccn_jobcard_list.user_no}} ({{p_ccn_jobcard_list.division}})</td>
+                                <td class="align-middle">
+                                    {% if p_ccn_jobcard_list.problemcategory == '3' %}
+                                        <span>Printer</span>
+                                    {% else %}
+                                        <span style="color: red;">Internet</span>
+                                    {% endif %} 
+                                </td>
+                                <td class="align-middle">{{p_ccn_jobcard_list.problem}}</td>
+                             
+                                <td class="align-middle"> 
+                                
+                                <input type="hidden" name="job_id" value="{{p_ccn_jobcard_list.id}}">
+                                <select name="assigned_to" class="form-control">
+                    <option value="">Select Name</option>
+                    {% for engineer_list in engineer_list %}
+                      <option value="{{engineer_list}}">{{engineer_list}}</option>
+                    {% endfor %}
+            </select>
+
+                                </td>
+                                <td class="align-middle">
+ <button type="submit" class="btn btn-success btn-sm d-inline-block mr-1">Assign</button>
+                                </td>
+                                                           
+                            </tr>
+                        {% endfor %} 
+                    </tbody>
+                </table>
+                </form> 
+
+
+
+
+            </div>
+        </div>
+    </div>
+</section> 
+
+<script>
+$(document).ready(function(){
+    $('#myTable').dataTable();
+});
+</script>
+
+{% endblock d-content %} 
+{% block d-script %}
+    <script> 
+    </script>
+
+{% endblock d-script %}

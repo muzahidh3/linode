@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block d-title %}
+    Track your JobCard / Ticket
+{% endblock d-title %}
+
+{% block h-css-js %}
+  
+  <link rel="stylesheet" href="{% static '/css/tracking.css' %}">
+{% endblock h-css-js %}
+
+
+{% block d-content %}
+
+ <section class="tracker-section">
+    <div class="container tracker-container">
+     
+      <div class="row">
+        <div class="col-lg-12">
+          <div id="tracking">
+            <div class="tracking-list">
+              <div class="row">
+                <div class="col-lg-8">
+                 {% for jb_cr in jb_cr %}
+                  
+                  <div class="tracking-item">
+                    <div class="tracking-icon status-complete">
+                      <i class="fas fa-thumbs-up"></i>
+                    </div>
+                    <div class="tracking-date">{{ jb_cr.date_created|date:'d F , o' }}<span>{{jb_cr.date_created|date:'H:i A'}}</span></div>
+                    <div class="tracking-content">
+                    <h6>Raise Ticket</h6>
+                    <span>Your JobCard for CCN service request submitted & forwarded to HOD</span>
+                    </div>
+                  </div>
+                  
+                  <div class="tracking-item tracking-active">
+                    <div class="tracking-icon status-complete">
+                      <i class="fas fa-user-alt"></i>
+                    </div>
+                    <div class="tracking-date">{{ jb_cr.date_created|date:'d F , o' }}<span>{{jb_cr.date_created|date:'H:i A'}}</span></div>
+                    <div class="tracking-content">
+                    <h6>HOD</h6>
+                    <span>Received to Head</span></div>
+                  </div>
+
+                  
+                  <div class="tracking-item">
+                    <div class="tracking-icon status-complete">
+                      <i class="fas fa-user-alt"></i>
+                    </div>
+                    <div class="tracking-date">
+                    {% if jb_cr.job_on == 'CCN Head' or jb_cr.job_on == 'Engineer' %}{{ jb_cr.forwareded_to_ccn_head_date|date:'d F , o' }}<span>{{jb_cr.forwareded_to_ccn_head_date|date:'H:i A'}}
+                    {%else%} ------ 
+                    {%endif%}
+                    </span></div>
+                    <div class="tracking-content">{% if jb_cr.job_on == 'CCN Head' or jb_cr.job_on == 'Engineer' %}
+                    <h6>CCN Head</h6>
+                    <span>Forwarded to CCN Head
+                     {%else%} <span class="inactive">CCN Head <span>JobCard Not Forwarded to Head CCN</span></span>
+                    {%endif%}
+                    </span></div>
+                  </div>
+                  
+                  
+
+                    
+                  <div class="tracking-item">
+                    <div class="tracking-icon status-complete">
+                      <i class="fas fa-user-alt"></i>
+                    </div>
+                    <div class="tracking-date">
+                    {% if jb_cr.job_on == 'Engineer' %}{{ jb_cr.ccn_head_to_engg_date|date:'d F , o' }}<span>{{jb_cr.ccn_head_to_engg_date|date:'H:i A'}}
+                    {%else%} ------ 
+                    {%endif%}
+                    </span></div>
+                    <div class="tracking-content">{% if jb_cr.job_on == 'Engineer' %}
+                    <h6>Engineer</h6>
+                    <span>Forwarded to an Engineer
+                     {%else%} <span class="inactive">Engineer <span>JobCard Not Assigned to an Engineer</span></span>
+                    {%endif%}
+                    </span></div>
+                  </div>
+
+
+
+                <div class="tracking-item">
+                    <div class="tracking-icon status-complete">
+                      <i class="fas fa-check"></i>
+                    </div>
+                    <div class="tracking-date">
+                    {% if jb_cr.job_on == 'Engineer' %}{{ jb_cr.engg_task_complete_date|date:'d F , o' }}<span>{{jb_cr.engg_task_complete_date|date:'H:i A'}}
+                    {%else%} ------ 
+                    {%endif%}
+                    </span></div>
+                    <div class="tracking-content">{% if jb_cr.job_on == 'Engineer' %}
+                    <h6>Completed</h6>
+                    <span>Task completed by Engineer
+                     {%else%} <span class="inactive">Completed <span>Task Not Assigned to an engineer</span></span>
+                    {%endif%}
+                    </span></div>
+                </div>
+
+
+                 <div class="tracking-item">
+                    <div class="tracking-icon status-complete">
+                      <i class="fas fa-check-double"></i>
+                    </div>
+                    <div class="tracking-date">
+                    {% if jb_cr.job_on == 'CCN Head' %}{{ jb_cr.engg_task_complete_date|date:'d F , o' }}<span>{{jb_cr.engg_task_complete_date|date:'H:i A'}}
+                    {%else%}
+                    {%endif%}
+                    </span></div>
+                    <div class="tracking-content">{% if jb_cr.job_on == 'Customer' %}
+                    <h6>Closed</h6>
+                    <span>Ticket close by user
+                     {%else%} <span class="inactive">Not Closed <span>Task not closed by the user.</span></span>
+                    {%endif%}
+                    </span></div>
+                </div>
+
+
+                  
+
+                  {% endfor %}
+                </div>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock d-content %} 

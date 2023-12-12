@@ -1,0 +1,142 @@
+a,.btn{
+    text-decoration: none !important;
+}
+a:hover,.btn:hover{
+    text-decoration: none;
+}
+
+
+.my_notification {
+	padding: 5px 25px 0 10px;
+	margin-bottom: 5px;
+}
+.my_notification button {
+	padding: 3px 10px !important; 
+}
+.my_notification a {
+	font-size: 14px;
+	display: block;
+	margin-bottom: -3px !important;
+	padding: 0;
+}
+.my_notification span {
+	line-height: 1;
+	padding: 0;
+	margin-top: 5px !important;
+	color: #17a2b8 !important;
+	font-size: 12px !important;
+	display: block;
+}
+.notification {
+    margin-bottom: 2px !important;
+}
+.little_shadow.notification {
+    background: #eee !important;
+}
+.notification_button{
+	height: 400px;
+	overflow: auto;
+}
+strong{
+	font-weight: 700 !important;
+}
+.table_body_area {
+    max-height: 445px;
+    overflow: auto;
+}
+.direct-chat-messages{
+	height: 500px;
+	overflow:auto;
+}
+.direct-chat-inbox{
+	height: 562px;
+	overflow:auto;
+}
+.admin.investor {
+	background: #d2d6de; 
+	color: #000;
+}
+.admin {
+    text-align: center;
+    font-size: 20px;
+    width: 42px;
+    height: 42px;
+    border-radius: 80px;
+    background: #17a2b8;
+    padding-left: 3px;
+	padding-top: 6px;
+	color: #fff;
+}
+.single_investor{
+	overflow: hidden;
+	margin-bottom: 5px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #ddd;
+}
+.first_name_column .admin{
+	background-color:#28a745 ;
+}
+.first_name_column{
+	float: left;
+	width: 25%;
+}
+.full_name{
+	float: left;
+	width:75% ;
+}
+.full_name a {
+    font-size: 16px;
+    padding: 7px 0;
+    display: block;
+    color: #28a745;
+}
+.nav-sidebar>.nav-item .nav-icon {
+    margin-left: 0;
+    font-size: 1.2rem;
+    margin-right: 0;
+    text-align: center;
+    width: auto;
+}
+
+.logo_images img.brand-image {
+    width: 55px !important;
+    height: auto !important;
+    max-height: 150px !important;
+    margin-top: 13px;
+    margin-left: 8px;
+}
+.logo_images {
+    width: 75px;
+    height: 75px;
+    border-radius: 90px;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+}
+
+/** MZD CSS **/
+.logo_images img {
+    height: 74px;
+    width: 70px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+}
+
+
+.small-box p {
+    font-size: 14px;
+}
+
+.nav-item.has-treeview.menu-open > a.nav-link{
+    background-color: #007bff !important;
+    color: #fff !important;
+}
+[class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:focus, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:hover {
+    background-color: rgba(255,255,255,.2) !important;
+    color: #fff;
+}
+
+
+
+
+

@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block d-title %}
+    Type of Problem List
+{% endblock d-title %} 
+
+{% block d-content %} 
+
+
+ {% if messages %}
+            <div class="msg-bg">
+            {% for message in messages %}
+            
+          {% if message.tags == "error" %}
+                <div class="error_msg">
+                    <p style="color: red;"><i class="fas fa-exclamation-triangle"></i> {{message}}</p>
+                </div>
+          {% else %}
+                <div class="success_msg">
+                    <p><i class="fas fa-check-circle"></i> {{message}}</p>
+                </div>
+             {% endif %} 
+                      
+            {% endfor %}
+                 </div>
+        {% endif %} 
+
+
+<div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-12"> 
+          <h1 class="m-0 text-dark float-left w-75">Type of Problem List</h1> 
+          <a href="{% url 'users:add-jobcard-problem' %}" class="btn btn-success float-right text-right">Add</a>
+        </div> 
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div> 
+<section class="invest_request_area">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered table-striped text-center">
+                    <thead class="table-dark">
+                        <th>SL</th>
+                        <th>Division Name</th> 
+                        <th>Status</th> 
+                        <th>Action</th>
+                    </thead>
+                    <tbody class="text-center">
+                        
+                        {% for p_list in p_list %}
+                            <tr>
+                                <td class="align-middle">{{forloop.counter}}</td>
+                                <td class="align-middle">{{p_list.problem_name}}</td>
+                                <td class="align-middle"> 
+                                    {% if p_list.status %}
+                                        <span>Active</span>
+                                    {% else %}
+                                        <span style="color: red;">Inactive</span>
+                                    {% endif %} 
+                                </td>
+                                <td class="align-middle text-center">
+                                    <a href="#" class="btn btn-success btn-sm d-inline-block mr-1">Edit</a>
+                                    
+                                    {% if not p_list.status %}
+                                        <a href="{% url 'users:jobcard-problem-active' p_list.id %}" class="btn btn-warning btn-sm d-inline-block mr-1">Active</a>
+                                        {% else %}
+                                        <a href="{% url 'users:jobcard-problem-deactivate' p_list.id %}" class="btn btn-success btn-sm d-inline-block mr-1">Deactive</a>
+                                    {% endif %} 
+                                    
+                                </td> 
+                                 
+                            </tr>
+                        {% endfor %} 
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section> 
+{% endblock d-content %} 
+{% block d-script %}
+    <script> 
+    </script>
+
+{% endblock d-script %}

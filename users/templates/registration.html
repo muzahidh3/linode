@@ -1,0 +1,264 @@
+{% extends 'base.html' %}
+{% comment %} {% load crispy_forms_field %}  {% endcomment %}
+{% load static %}
+{% block ac-title %}
+    User Registrations
+{% endblock ac-title %}
+
+{% block d-content %}
+<div class="logo text-center" id="main_logoa">
+  <a href="">
+      <img src="{% static '/img/logo.png' %}" alt="">
+  </a>
+</div>
+<div class="card">
+  <div class="card-body register-card-body">
+    <p class="login-box-msg">PFA INVEST SIGN UP FORM    </p> 
+    {{form.errors}}
+
+    <form action="" method="POST">
+      {% csrf_token %}
+      
+     <div class="input-group mb-3">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
+							</div>
+							{{form.username}}
+						</div>
+
+            <div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+							</div>
+							{{form.first_name}}
+						</div>
+
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+							</div>
+							{{form.last_name}}
+						</div>
+
+
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+							</div>
+							{{form.email}}
+						</div>
+
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+							</div>
+							{{form.division}}
+						</div>
+
+
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							{{form.password1}}
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							{{form.password2}}
+						</div>
+
+            <div class="input-group mb-2">
+						
+							{{form.is_hod}}{{form.is_hod.label}}
+						</div>
+
+<div class="input-group mb-2">
+						
+							{{form.is_ccn_hod}}{{form.is_ccn_hod.label}}
+						</div>
+
+            <div class="input-group mb-2">
+						
+							{{form.is_engineer}}{{form.is_engineer.label}}
+						</div>
+
+            <div class="input-group mb-2">
+						
+							{{form.is_employee}}{{form.is_employee.label}}
+						</div>
+
+				   		<div class="d-flex justify-content-center mt-3 login_container">
+				 			<input class="btn login_btn" type="submit" value="Register Account">
+				   		</div>
+
+    </form> 
+    <p>Already have an Account? <a href="#">Login</a> </p>
+
+  </div>
+  <!-- /.form-box -->
+</div><!-- /.card -->
+ 
+<script>
+						/* Because i didnt set placeholder values in forms.py they will be set here using vanilla Javascript
+		//We start indexing at one because CSRF_token is considered and input field 
+		 */
+
+		//Query All input fields
+		var form_fields = document.getElementsByTagName('input')
+		form_fields[1].placeholder='Username..';
+		form_fields[2].placeholder='First Name..';
+		form_fields[3].placeholder='Last Name..';    
+		form_fields[4].placeholder='Email..';
+		form_fields[5].placeholder='Division';    
+		form_fields[6].placeholder='Enter password...';
+		form_fields[7].placeholder='Re-enter Password...';
+
+
+		for (var field in form_fields){	
+			form_fields[field].className += ' form-control'
+		}
+	</script>
+
+{% endblock d-content %}
+{% block ac-script %}
+<script src="{% static '/js/autonumaric.js' %}"></script>
+  <script>
+
+    jQuery(function($) {
+        $('.auto').autoNumeric('init');
+    });
+
+    function formatNumber(num) {
+      return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
+
+    function amountCalculation(){
+      var invest_amount = document.getElementById("invest_amount").value 
+      var interest_amount = document.getElementById("hidden_amount").value 
+      invest_amount = invest_amount.replace(/,/g,"");
+      invest_amount = parseFloat(invest_amount)
+      
+      var earning_amount = (interest_amount * invest_amount)/100
+      earning_amount = Math.floor(earning_amount) 
+      new_amounts = formatNumber(earning_amount)
+      document.getElementById("earning_amount").setAttribute('value',new_amounts + ".00")
+
+    } 
+
+    function autoDate(){
+      var main_date = document.getElementById('invest_date').value; 
+      console.log(main_date)
+      var chooseDate=new Date(main_date);
+      var date_in_milisec = chooseDate.setMonth(chooseDate.getMonth()+1);
+      var full_date = new Date(date_in_milisec)   
+
+      var date = new Date(full_date),
+      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+      day = ("0" + date.getDate()).slice(-2);
+      var show_date =  [mnth, day, date.getFullYear()].join(" / ") 
+      var finial_date =  [date.getFullYear(), mnth, day].join("-") 
+
+      var date_size = finial_date.length
+      console.log(date_size)
+      if(date_size > 9){ 
+        document.getElementById("withdraw_data").setAttribute('value',show_date)
+        document.getElementById("withdraw_data_main").setAttribute('value',finial_date)
+      }
+      else{
+        document.getElementById("withdraw_data").setAttribute('value'," ")
+        document.getElementById("withdraw_data_main").setAttribute('value'," ")
+      }
+    }
+
+
+
+    function checkPassword(){
+      var pass1 = document.getElementById('pass1').value
+      var pass2 = document.getElementById('pass2').value
+      var size = pass2.length
+      console.log(pass1, pass2, size)
+      if (size > 0){
+        if(pass1 === pass2){
+          document.getElementById("pass_error").innerHTML= "Password Matched"
+        }
+        else{
+          document.getElementById("pass_error").innerHTML= "Password Doesn't Match"
+        }
+      }
+      else{
+        document.getElementById("pass_error").innerHTML= "" 
+
+      }
+     
+    }
+
+
+
+    function openSecondPage(){
+      var p1 = document.getElementById("first_page")
+      var p2 = document.getElementById("second_page") 
+      var username = document.getElementById('username').value  
+      var password = document.getElementById('pass1').value
+      var password2 = document.getElementById('pass2').value 
+      len1 = username.length
+      len2 = password.length
+      len3 = password2.length 
+
+      if(len1 < 1){
+        document.getElementById('username_group').style.border = "1px solid red"
+      }
+      if(len2 < 1){
+        document.getElementById('password_group').style.border = "1px solid red"
+      }
+      if(len3 < 1){
+        document.getElementById('pass2_group').style.border = "1px solid red"
+      }
+      if(len2 < 1 || len2 < 1|| len3 < 1){
+        document.getElementById("pass_error").style.color = 'red'
+        document.getElementById("pass_error").innerHTML= "Please Fix the Error"
+      }
+      else{
+        p1.style.display = 'none' 
+        p2.style.display = 'block'
+        document.getElementById("main_logoa").style.marginTop = '260px'
+      } 
+    }
+
+    function openFirstPage(){
+      var p1 = document.getElementById("first_page")
+      var p2 = document.getElementById("second_page") 
+      p1.style.display = 'block' 
+      p2.style.display = 'none'
+      document.getElementById("main_logoa").style.marginTop = '0px'
+
+    }
+ 
+    function bankAccountNumberCheck(){
+      value = document.getElementById('bank_account').value
+      value_len = value.length
+      if(value_len == 10){
+        document.getElementById('bank_error').innerHTML = "Perfect account number"
+        document.getElementById('bank_error').style.color = 'navy'
+        document.getElementById('bank_account').style.border = "1px solid #939ba2"
+      }
+      else{
+        document.getElementById('bank_error').innerHTML = "Account number must be 10 digits"
+        document.getElementById('bank_account').style.border = "1px solid red"
+        document.getElementById('bank_error').style.color = 'red'
+
+      }
+      if(value_len < 1){
+        document.getElementById('bank_error').innerHTML = "" 
+      }
+    }
+
+    function formatNumber(num) {
+      return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
+    console.info(formatNumber(463547856))
+  </script>  
+ 
+
+{% endblock ac-script %}

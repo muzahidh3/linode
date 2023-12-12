@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% block d-title %}
+    All JobCard's List
+{% endblock d-title %} 
+
+{% block d-content %} 
+
+<div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-12"> 
+          <h1 class="m-0 text-dark float-left w-75">JobCard List</h1> 
+          </div> 
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div> 
+<section class="invest_request_area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                {% for message in messages %}
+                    <p class="float-left mb-1" style="color: red;">{{message}}</p>
+                {% endfor %}
+            </div>
+        </div>
+
+
+               <div class="row">
+            <div class="col">
+                {% for message in messages %}
+                    <p class="float-left mb-1" style="color: red;">{{message}}</p>
+                {% endfor %}
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered table-striped text-center" id="myTable">
+                    <thead class="table-dark">
+                        <th>SL</th>
+                        <th>JobCard ID</th>
+                        <th>Category</th> 
+                        <th>JobCard On</th>
+                        <th>Status</th> 
+                        <th>View</th>
+                    </thead>
+                    <tbody class="text-center">
+                        
+                        {% for jobcard in jobcard_list %}
+                            <tr>
+                                <td class="align-middle">{{forloop.counter0|add:jobcard_list.start_index}}</td>
+                                <td class="align-middle">CCN{{jobcard.id}}</td>
+                                <td class="align-middle">
+                                 {% if jobcard.problemcategory == '3' %}
+                                        <span>Printer</span>
+                                    {% else %}
+                                        <span style="color: red;">Internet</span>
+                                    {% endif %} 
+                                </td>
+                                
+                                <td class="align-middle">{{jobcard.job_on}}</td>
+                                <td class="align-middle"> 
+                                    {% if jobcard.status %}
+                                        <span>Closed</span>
+                                    {% else %}
+                                        <span style="color: red;">Pending</span>
+                                    {% endif %} 
+                                </td>
+                                <td class="align-middle text-center">
+<a href="{% url 'users:trace-jobcard' jobcard.id %}" class="btn btn-warning btn-sm d-inline-block mr-1">Trace</a>  
+                                    
+                                    
+                                </td> 
+                                 
+                            </tr>
+                        {% endfor %} 
+                    </tbody>
+                </table>
+
+                                 
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-end">
+   
+   {% if jobcard_list.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ jobcard_list.previous_page_number }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    {% endif %}
+
+<li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+
+
+    {% if jobcard_list.has_next %}
+    <li class="page-item">
+    <a class="page-link" href="?page={{ jobcard_list.next_page_number }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+
+            </div>
+        </div>
+    </div>
+</section> 
+
+<script>
+$(document).ready(function(){
+    $('#myTable').dataTable();
+});
+</script>
+
+{% endblock d-content %} 
+{% block d-script %}
+    <script> 
+    </script>
+
+{% endblock d-script %}

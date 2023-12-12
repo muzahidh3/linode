@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% block d-title %}
+    All JobCard's of {{ request.user.first_name }}
+{% endblock d-title %} 
+
+{% block d-content %} 
+
+<div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-12"> 
+          <h1 class="m-0 text-dark float-left w-75">JobCard List</h1> 
+          </div> 
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div> 
+<section class="invest_request_area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                {% for message in messages %}
+                    <p class="float-left mb-1" style="color: red;">{{message}}</p>
+                {% endfor %}
+            </div>
+        </div>
+
+
+               <div class="row">
+            <div class="col">
+                {% for message in messages %}
+                    <p class="float-left mb-1" style="color: red;">{{message}}</p>
+                {% endfor %}
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered table-striped text-center" id="myTable">
+                    <thead class="table-dark">
+                        <th>SL</th>
+                        <th>Type of Problem</th> 
+                        <th>Status</th> 
+                        <th>Trace</th>
+                    </thead>
+                    <tbody class="text-center">
+                        
+                        {% for engg_al in engg_all %}
+                            <tr>
+                                <td class="align-middle">{{forloop.counter0|add:engg_all.start_index}}</td>
+                                <td class="align-middle">{{engg_al.type_of_problem}}</td>
+                                <td class="align-middle"> 
+                                    {% if engg_al.status %}
+                                        <span>Closed</span>
+                                    {% else %}
+                                        <span style="color: red;">Pending</span>
+                                    {% endif %} 
+                                </td>
+                                <td class="align-middle text-center">
+                                <a href="{% url 'users:trace-jobcard' engg_al.id %}" class="btn btn-warning btn-sm d-inline-block mr-1">Trace</a>  
+                                    
+                                </td> 
+                                 
+                            </tr>
+                        {% endfor %} 
+                    </tbody>
+                </table>
+
+                                      
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-end">
+   
+   {% if engg_all.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ engg_all.previous_page_number }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    {% endif %}
+
+
+
+
+{% for i in engg_all.paginator.page_range %}
+      {% if engg_all.number == i %}
+        <li class="page-item active"><a class="page-link" href="?page={{ i }}"> {{ i }} </a></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+
+
+
+
+    {% if engg_all.has_next %}
+    <li class="page-item">
+    <a class="page-link" href="?page={{ engg_all.next_page_number }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+
+
+            </div>
+        </div>
+    </div>
+</section> 
+
+<script>
+$(document).ready(function(){
+    $('#myTable').dataTable();
+});
+</script>
+
+{% endblock d-content %} 
+{% block d-script %}
+    <script> 
+    </script>
+
+{% endblock d-script %}

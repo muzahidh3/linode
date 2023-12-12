@@ -1,0 +1,269 @@
+
+@import "bootstrap.min.css";
+
+/*FontAwesome*/
+@import "font-awesome.min.css";
+
+/*Animate css*/
+@import "animate.min.css";
+
+/*Owl Slider*/
+@import "owl.carousel.min.css";
+
+
+
+
+/*==== Tracker ======*/
+.tracker-section {
+	padding: 0 0 100px;
+	background-color: rgba(6, 141, 180, 0.045);
+}
+
+.tracker-form {
+	background: rgb(6, 141, 180);
+	background: linear-gradient(309deg, rgba(6, 141, 180, 1) 0%, rgba(58, 44, 81, 1) 100%);
+	border-radius: 10px 10px 0 0;
+	padding: 20px;
+	border-bottom: none;
+}
+
+.tracker-container{
+	
+}
+
+.tracker-form .form-group {
+	width: 40%;
+}
+
+.tracker-form .form-control {
+	width: 97%;
+	border: 0px;
+	outline: none;
+	height: 45px;
+}
+
+.tracker-form .form-control:focus,
+.tracker-form .form-control:active {
+	box-shadow: none;
+	outline: none;
+}
+
+.tracker-form .btn {
+	background: #3A2C51;
+	padding: 10px 30px;
+	border-radius: 30px;
+	font-size: 20px;
+	letter-spacing: 1px;
+	border: none;
+}
+
+h3.tracker-heading {
+	font-size: 22px;
+	color: #fff;
+	margin-bottom: 8px;
+}
+
+.tracking-detail {
+	padding: 3rem 0
+}
+
+#tracking {
+	background-color: #ffffff;
+	border-radius: 10px;
+	-webkit-box-shadow: 0px 4px 3px #ccc;
+	-moz-box-shadow: 0px 4px 3px #ccc;
+	box-shadow: 0px 4px 3px #ccc;
+}
+
+.tracking-list {
+	background-color: #ffffff;
+	border-radius: 0 0 10px 10px;
+}
+
+.tracking-item {
+	border-left: 1px solid #e5e5e5;
+    position: relative;
+    padding: 2rem 1.5rem .5rem 2rem;
+    font-size: .9rem;
+    margin-left: 3rem;
+    min-height: 5rem;
+}
+.tracking-item h6 {
+    font-weight: 700;
+    font-size: 14px !important;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.tracking-date {
+font-weight: bold !important;
+}
+
+.tracking-item:last-child {
+	padding-bottom: 4rem
+}
+
+.tracking-item .tracking-date {
+	margin-bottom: .5rem
+}
+
+.tracking-item .tracking-date span {
+	color: #888;
+	font-size: 85%;
+	padding-left: .4rem
+}
+
+.tracking-item .tracking-content {
+	padding: .5rem .8rem;
+	background-color: #f4f4f4;
+	border-radius: .5rem
+}
+
+.tracking-item .tracking-content span {
+	display: block;
+	color: #888;
+	font-size: 85%
+}
+
+.tracking-item .tracking-icon {
+	line-height: 2.6rem;
+    position: absolute;
+    left: -1.3rem;
+    width: 2.6rem;
+    height: 2.6rem;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 20px;
+    background-color: #fff;
+    color: #e5e5e5;
+}
+
+.tracking-item .tracking-icon.status-complete {
+	border: 1px solid rgba(6, 141, 180, 0.3);
+	color: #068DB4;
+}
+
+.tracking-item .tracking-icon.status-active {
+	border: 1px solid rgba(91, 176, 58, 0.7);
+	background-color: #5bb03a;
+	color: #ffffff;
+	-webkit-box-shadow: 0px 0px 0px 6px rgba(91, 176, 58, 0.4);
+	-moz-box-shadow: 0px 0px 0px 6px rgba(91, 176, 58, 0.4);
+	box-shadow: 0px 0px 0px 6px rgba(91, 176, 58, 0.4);
+}
+
+.tracking-item.tracking-active {
+	font-weight: bold !important;
+}
+
+.tracking-item .tracking-icon.status-pending {
+	border: 1px solid #999999;
+	color: #999999;
+}
+
+.tracking-pending .tracking-date,
+.tracking-pending .tracking-date span,
+.tracking-pending .tracking-content,
+.tracking-pending .tracking-content span {
+	color: #999999;
+}
+/* ==== BLog ====== */
+
+
+/*
+================================================
+ Responsive CSS
+================================================
+*/
+@media (min-width:992px) {
+	.tracking-item {
+		margin-left: 21rem
+	}
+
+	.tracking-item .tracking-date {
+	position: absolute;
+    left: -14rem;
+    width: 11.5rem;
+    text-align: right;
+	}
+
+	.tracking-item .tracking-date span {
+		display: block
+	}
+
+	.tracking-item .tracking-content {
+		padding: 0;
+		background-color: transparent
+	}
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+	
+
+	.tracker-section,
+	.services-section,
+	.blog-section,
+	.reviews-section,
+	.contact-section {
+		padding: 75px 0;
+	}
+
+	.tracker-container {
+		margin-top: -132px;
+	}
+
+	.order-details {
+		border-left: none;
+		height: auto;
+		border-top: 1px solid #ddd;
+	}
+}
+
+@media (max-width: 767px) {
+	
+
+	.tracker-section,
+	.services-section,
+	.blog-section,
+	.reviews-section,
+	.contact-section {
+		padding: 60px 0;
+	}
+
+	.tracker-container {
+		margin-top: 0px;
+	}
+
+	.tracker-form .form-group,
+	.tracker-form .form-control {
+		width: 100%;
+	}
+
+	.order-details {
+		border-left: none;
+		height: auto;
+		border-top: 1px solid #ddd;
+	}
+
+	.order-details .order-img {
+		display: none;
+	}
+
+	.order-details .order-text {
+		width: 100%;
+		padding: 20px;
+	}
+
+	.order-text p {
+		margin-bottom: 0px;
+	}
+
+	p.section-para {
+		width: 100%;
+	}
+
+	.owl-carousel .owl-nav {
+		position: static;
+		padding: 0 20px 20px;
+	}
+}

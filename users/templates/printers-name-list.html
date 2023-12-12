@@ -1,0 +1,4 @@
+<option value="">---select printer---</option>
+{% for printer_list in printer_list %}
+<option value="{{ printer_list.p_name }}">{{ printer_list.p_name }}</option>
+{% endfor %}

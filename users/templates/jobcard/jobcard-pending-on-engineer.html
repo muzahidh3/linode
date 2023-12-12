@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% block d-title %}
+    All JobCard's List
+{% endblock d-title %} 
+
+{% block d-content %} 
+
+<div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-12"> 
+          <h1 class="m-0 text-dark float-left w-75">JobCard List</h1> 
+          </div> 
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div> 
+<section class="invest_request_area">
+    <div class="container-fluid">
+        
+        <div class="row">
+            <div class="col-12">
+          {% if messages %}
+            <div class="msg-bg">
+            {% for message in messages %}
+            
+          {% if message.tags == "error" %}
+                <div class="error_msg">
+                    <p style="color: red;"><i class="fas fa-exclamation-triangle"></i> {{message}}</p>
+                </div>
+          {% else %}
+                <div class="success_msg">
+                    <p><i class="fas fa-check-circle"></i> {{message}}</p>
+                </div>
+             {% endif %} 
+                      
+            {% endfor %}
+                 </div>
+        {% endif %} 
+
+
+                <table class="table table-bordered table-striped text-center">
+                    <thead class="table-dark">
+                        <th>SL</th>
+                        <th>Job Card ID</th>
+                        
+                        <th>Name (Division)</th> 
+                        <th>Category</th>
+                        <th>Created</th>
+                        <th>Action</th>
+                    </thead>
+                    <tbody class="text-center">
+                        
+                        {% for pending_to_engg in pending_to_engineer %}
+                            <tr>
+                                <td class="align-middle">{{forloop.counter0|add:pending_to_engineer.start_index}}</td>
+                                <td class="align-middle">CCN{{pending_to_engg.id}}</td>
+                                <td class="align-middle">{{pending_to_engg.user_no}} ({{pending_to_engg.division}})</td>
+                                <td class="align-middle">
+                                 {% if j_list.problemcategory == '3' %}
+                                        <span>Printer</span>
+                                    {% else %}
+                                        <span style="color: red;">Internet</span>
+                                    {% endif %} 
+                                </td>
+                                
+                                <td class="align-middle">{{pending_to_engg.date_created}}</td>
+                               
+                                <td class="align-middle text-center">
+                                                            
+<a href="{% url 'users:engineer-comments' pending_to_engg.id %}" class="btn btn-warning btn-sm d-inline-block mr-1">View</a>
+                                                                     
+                                </td> 
+                                 
+                            </tr>
+                        {% endfor %} 
+                    </tbody>
+                </table>
+
+                          
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-end">
+   
+   {% if pending_to_engineer.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ pending_to_engineer.previous_page_number }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    {% endif %}
+
+
+
+
+{% for i in pending_to_engineer.paginator.page_range %}
+      {% if pending_to_engineer.number == i %}
+        <li class="page-item active"><a class="page-link" href="?page={{ i }}"> {{ i }} </a></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+
+
+
+
+    {% if pending_to_engineer.has_next %}
+    <li class="page-item">
+    <a class="page-link" href="?page={{ pending_to_engineer.next_page_number }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+
+
+
+            </div>
+        </div>
+    </div>
+</section> 
+{% endblock d-content %} 
+{% block d-script %}
+    <script> 
+    </script>
+
+{% endblock d-script %}

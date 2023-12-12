@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block d-title %}
+    Create Account
+{% endblock d-title %}
+
+{% block h-css-js %}
+
+
+<link rel="stylesheet" href="{% static '/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+
+  <link rel="stylesheet" href="{% static '/css/main.css' %}">
+{% endblock h-css-js %}
+
+{% block d-content %}
+
+
+{% if messages %}
+            <div class="msg-bg">
+            {% for message in messages %}
+            
+          {% if message.tags == "error" %}
+                <div class="error_msg">
+                    <p><i class="fas fa-exclamation-triangle"></i> {{message}}</p>
+                </div>
+          {% else %}
+                <div class="success_msg">
+                    <p><i class="fas fa-check-circle"></i> {{message}}</p>
+                </div>
+             {% endif %} 
+                      
+            {% endfor %}
+                 </div>
+        {% endif %} 
+
+
+
+
+
+		<div class="container-contact100">
+
+<div class="wrap-contact100">
+
+			<form action="" method="POST" class="contact100-form validate-form">
+      {% csrf_token %}
+
+				<span class="contact100-form-title">
+					Register an Account
+				</span>
+
+		<div class="wrap-input100 validate-input" data-validate="Please enter username">
+											{{ form.username }}
+					<span class="focus-input100"></span>
+				</div>
+
+
+
+
+<div class="wrap-input100 validate-input" data-validate="Please enter your password">
+											{{ form.password1 }}
+					<span class="focus-input100"></span>
+				</div>
+
+
+      
+
+
+<div class="wrap-input100 validate-input" data-validate="Confirm password">
+											{{ form.password2 }}
+					<span class="focus-input100"></span>
+				</div>
+
+      
+
+
+
+
+<div class="wrap-input100 validate-input" data-validate="Please enter your Email">
+											{{ form.email }}
+					<span class="focus-input100"></span>
+				</div>
+
+      
+
+<div class="wrap-input100 validate-input" data-validate="Select Division">
+											{{ form.division }}
+					<span class="focus-input100"></span>
+				</div>		
+
+				<div class="container-contact100-form-btn">
+					<button type="submit" class="contact100-form-btn">
+						Create
+					</button>
+				</div>
+
+			</form>
+
+      <div class="d-block w-100 overflow-hidden mt-3 pt-2">
+      <p style="text-align: center; display:block" class="align-center">Already an account? <a href="/login/">Click here</a> </p>
+
+    </div>
+
+
+		</div>
+	
+
+
+</div>
+
+
+
+<script>
+						/* Because i didnt set placeholder values in forms.py they will be set here using vanilla Javascript
+		//We start indexing at one because CSRF_token is considered and input field 
+		 */
+
+		//Query All input fields
+		var form_fields = document.getElementsByTagName('input')
+    var division_name = document.getElementsByName('division')
+  
+
+		form_fields[1].placeholder='Username..';   
+    form_fields[2].placeholder='Password';  
+    form_fields[3].placeholder='Confirm Password';  
+    form_fields[4].placeholder='Email ID';   
+
+
+
+    
+
+   
+
+		for (var field in form_fields){	
+			form_fields[field].className += ' input100'
+		}
+
+    division_name[0].className += ' input100'
+
+
+
+	</script>
+
+<script src="{% static '/js/jquery-3.2.1.min.js' %}"></script>
+
+<script src="{% static '/js/main.js' %}"></script>
+
+{% endblock d-content %} 

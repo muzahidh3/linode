@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block d-title %}
+    All JobCard's List
+{% endblock d-title %} 
+
+{% block d-content %} 
+
+<div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-12"> 
+          <h1 class="m-0 text-dark float-left w-75">JobCard List</h1> 
+          <a href="{% url 'users:add_jobcard' %}" class="btn btn-success float-right text-right">Add New JobCard</a>
+        </div> 
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div> 
+<section class="invest_request_area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                {% for message in messages %}
+                    <p class="float-left mb-1" style="color: red;">{{message}}</p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered table-striped text-center">
+                    <thead class="table-dark">
+                        <th>SL</th>
+                        <th>Type of Problem</th>
+                        <th>Model No</th>
+                        <th>JobCard On</th>
+                        <th>Status</th>
+                    </thead>
+                    <tbody class="text-center">
+                        
+                        {% for jobcard in division_jobcards %}
+                            <tr>
+                                <td class="align-middle">{{forloop.counter}}</td>
+                                <td class="align-middle">{{jobcard.type_of_problem}}</td>
+                                <td class="align-middle">{{jobcard.model_no}}</td>
+                                <td class="align-middle">
+                                {{jobcard.job_on}} <br />
+                                Date Created : {{jobcard.date_created|date:'Y-m-d H:i'}} <br />
+                                Assigned to CCN : {{ jobcard.forwareded_to_ccn_head_date|date:'Y-m-d H:i' }} <br />
+                                Assigned to Engineer : {{jobcard.ccn_head_to_engg_date|date:'Y-m-d H:i'}}
+                                </td>
+                                <td class="align-middle"> 
+                                    {% if jobcard.status %}
+                                        <span>Closed</span>
+                                    {% else %}
+                                        <span style="color: red;">Pending</span>
+                                    {% endif %} 
+                                </td>
+                                                                
+                            </tr>
+                        {% endfor %} 
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section> 
+{% endblock d-content %} 
+{% block d-script %}
+    <script> 
+    </script>
+
+{% endblock d-script %}

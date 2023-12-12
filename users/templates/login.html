@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block d-title %}
+    User Login
+{% endblock d-title %}
+
+{% block h-css-js %}
+  
+  <link rel="stylesheet" href="{% static '/css/main.css' %}">
+  <link rel="stylesheet" href="{% static '/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+{% endblock h-css-js %}
+
+
+{% block d-content %}
+
+
+
+<div class="container-contact100">
+
+<div class="wrap-contact100">
+
+
+{% if messages %}
+            <div class="msg-bg">
+            {% for message in messages %}
+            
+          {% if message.tags == "error" %}
+                <div class="error_msg">
+                    <p><i class="fas fa-exclamation-triangle"></i> {{message}}</p>
+                </div>
+          {% else %}
+                <div class="success_msg">
+                    <p><i class="fas fa-check-circle"></i> {{message}}</p>
+                </div>
+             {% endif %} 
+                      
+            {% endfor %}
+                 </div>
+        {% endif %} 
+
+
+
+
+	<span class="contact100-form-title text-center">
+					Login
+				</span>
+			<form action="" method="POST" class="contact100-form validate-form">
+      {% csrf_token %}
+
+
+				
+<div class="wrap-input100 validate-input" data-validate="Please enter your Username">
+										<input class="input100" type="text" name="username" placeholder="Username">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Please enter your password">
+										<input class="input100" type="password" name="password" placeholder="Password">
+					<span class="focus-input100"></span>
+				</div>
+
+         {{captcha}}
+
+        	<div class="container-contact100-form-btn">
+					<button type="submit" class="contact100-form-btn">
+						Login
+					</button>
+				</div>
+
+
+			</form>
+
+      <div class="d-block w-100 overflow-hidden mt-3 pt-2">
+      <p style="text-align: center; display:block" class="align-center">Don't have an account? <a href="/register/">Click here</a></p>
+      <p style="text-align: center; display:block" class="align-center">Forgot password? <a href="/password-reset/">here</a> to reset. </p>
+
+
+    </div>
+
+
+		</div>
+	</div>
+
+<script src="{% static '/js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static '/js/main.js' %}"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+{% endblock d-content %} 
